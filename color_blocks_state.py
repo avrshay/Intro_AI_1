@@ -1,10 +1,8 @@
 import heuristics
 
-
 # The function accepts a string that represents a final state and returns nothing.
 # המחרוזת שמתקבלת מייצגת רק את הצבעים הגלויים, מחרוזת של מספרים שלמים
 # ההנחה היא שהמחרוזת מגיעה בפורמט של מספרים מופרדים (למשל בפסיקים או רווחים).
-
 
 # helper functions
 def init_goal_for_search(goal_blocks):
@@ -27,6 +25,7 @@ class color_blocks_state:  # מייצג את מצב אפשרי של המגדל
 
     final_state = []  # [x, ...., y] #רק את מה שרואים - סטטי כי זה מצב שמשותף לכל המגדלים
 
+
     # constractor which convert a given string to tuples=state
     def __init__(self, blocks_str, **kwargs):
         # you can use the init function for several purposes
@@ -38,13 +37,15 @@ class color_blocks_state:  # מייצג את מצב אפשרי של המגדל
         for i in range(0, len(color_list), 2):
             self.state.append((int(color_list[i]), int(color_list[i + 1])))  # covert to int as well
 
+
+
     @staticmethod
     # A static function that receives a color_blocks_state object  and
     # returns true if the state is final and false otherwise.
     def is_goal_state(_color_blocks_state):
 
         current_tower = _color_blocks_state.state
-        for block, goal in zip(current_tower, color_blocks_state.final_state):  # רץ במקביל על 2 הרשימות
+        for block, goal in zip(current_tower, color_blocks_state.final_state):
             if block[0] != goal:
                 return False
         return True
@@ -53,9 +54,9 @@ class color_blocks_state:  # מייצג את מצב אפשרי של המגדל
     # an object of type color_blocks_state representing one of the neighbors and the
     # cost of moving to that neighbor.
     def get_neighbors(self):
-        # לכל מצב יש 2n-1 שכנים
-        # n סיבובים
-        # n-1 פליפים
+        # 2n-1 neighbors
+        # n spins
+        # n-1 flips
 
         neighbors_list = []
 
@@ -75,13 +76,16 @@ class color_blocks_state:  # מייצג את מצב אפשרי של המגדל
             neighbors_list.append((color_blocks_state(convert_list_to_str(new_neighbor)), 1))  # flip also cost 1 dua to the forom
 
         return neighbors_list
+    def __hash__(self):
+        return hash(tuple(self.state)) #convert the list to mutable and using hash method of tuples
 
-        # you can change the body of the function if you want
-        # def __hash__(self):
+    def __eq__(self, other):
 
-        # you can change the body of the function if you want
-        # def __eq__(self, other):
-        # you can change the body of the function if you want
+        if not isinstance(other, color_blocks_state):
+            return False
+
+        return self.state==other
+
 
     # for debugging states
     def get_state_str(self):
