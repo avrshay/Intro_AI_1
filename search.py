@@ -1,21 +1,29 @@
 from search_node import search_node
 from color_blocks_state import color_blocks_state
-
+import heapq
+open_heap = []
+update={}
 
 def create_open_set():
-    pass
-
+    global open_heap
+    global update
+    return open_heap
 
 def create_closed_set():
-    pass
+    close_set = set()
+    return close_set
 
 
 def add_to_open(vn, open_set):
-    pass
+    heapq.heappush(open_heap, (vn.f, vn))
+    update[vn] = vn.f
 
 
 def open_not_empty(open_set):
-    pass
+    if len(open_heap) > 0:
+        return True
+    else:
+        return False
 
 
 def get_best(open_set):
