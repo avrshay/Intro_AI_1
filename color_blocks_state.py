@@ -1,10 +1,8 @@
 import heuristics
 
 # The function accepts a string that represents a final state and returns nothing.
-# המחרוזת שמתקבלת מייצגת רק את הצבעים הגלויים, מחרוזת של מספרים שלמים
-# ההנחה היא שהמחרוזת מגיעה בפורמט של מספרים מופרדים (למשל בפסיקים או רווחים).
-
-# helper functions
+# The string that is returned represents only the visible colors, a string of integers
+# The assumption that the string comes in a number-separated format is (comma-separated spaces or spaces).
 def init_goal_for_search(goal_blocks):
 
     color_blocks_state.final_state = []  # איפוס מבנה קודם כמו שהיה כתוב בהנחיות
@@ -14,16 +12,17 @@ def init_goal_for_search(goal_blocks):
     for part in parts:
         color_blocks_state.final_state.append(int(part))
 
+# helper functions:
 def clean_String_helper(str):
     clean_str = str.replace('(', ' ').replace(')', ' ').replace(',', ' ')
     return clean_str.split()  # ['5', '2', '1', '3']
 
- def convert_list_to_str(block_list):
-        return ",".join([f"({x},{y})" for x, y in block_list])
+def convert_list_to_str(block_list):
+    return ",".join([f"({x},{y})" for x, y in block_list])
 
-class color_blocks_state:  # מייצג את מצב אפשרי של המגדל
+class color_blocks_state: # represents the possible state of the tower
 
-    final_state = []  # [x, ...., y] #רק את מה שרואים - סטטי כי זה מצב שמשותף לכל המגדלים
+    final_state = []  # [x, ...., y] #Only what you see - static because it is a situation common to all growers
 
 
     # constractor which convert a given string to tuples=state
