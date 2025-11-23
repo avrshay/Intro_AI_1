@@ -5,8 +5,8 @@ from search import *
 
 if __name__ == '__main__':
 
-    start_blocks = "(5,2),(1,5),(9,5),(21,1)"
-    goal_blocks = "1,5,9,21"
+    start_blocks = "(1,2),(3,4),(5,6),(4,2)"
+    goal_blocks = "3,6,1,4"
     init_goal_for_heuristics(goal_blocks)
     init_goal_for_search(goal_blocks)
     start_state = color_blocks_state(start_blocks)
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # runtime
     print(end_time)
     # solution cost
-    print(search_result[-1].g)
+    print( search_result[-1].g)
 
     print(base_heuristic(start_state))
 
@@ -27,3 +27,5 @@ if __name__ == '__main__':
     print(end_time)
     # solution cost
     print(search_result[-1].g)
+
+    print(advanced_heuristic(start_state))
