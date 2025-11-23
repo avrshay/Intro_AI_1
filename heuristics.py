@@ -40,7 +40,7 @@ def advanced_heuristic(_color_blocks_state):
     if list_state[0][0] != up_goal_state and list_state[0][1] != up_goal_state:
         sum_fun = sum_fun + 1
     for i in range(len(list_state) - 1, 0, -1):
-        if frozenset[list_state[i][0], list_state[i - 1][0]] in tuples_set_goal:
+        if frozenset([list_state[i][0], list_state[i - 1][0]]) in tuples_set_goal:
             continue
         else:
             sum_fun = sum_fun + 1

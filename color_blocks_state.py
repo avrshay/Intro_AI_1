@@ -42,8 +42,6 @@ class color_blocks_state:  # represents the possible state of the tower
             for i in range(0, len(color_list), 2):
                 self.state.append((int(color_list[i]), int(color_list[i + 1])))  # covert to int as well
 
-        self.state_str = str(self.state)
-
     @staticmethod
     # A static function that receives a color_blocks_state object  and
     # returns true if the state is final and false otherwise.

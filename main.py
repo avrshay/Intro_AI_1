@@ -6,7 +6,7 @@ from search import *
 if __name__ == '__main__':
 
     start_blocks = "(1,2),(3,4),(5,6),(4,2)"
-    goal_blocks = "3,6,1,4"
+    goal_blocks = "4,5,3,1"
     init_goal_for_heuristics(goal_blocks)
     init_goal_for_search(goal_blocks)
     start_state = color_blocks_state(start_blocks)
