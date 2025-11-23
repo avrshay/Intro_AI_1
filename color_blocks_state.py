@@ -33,10 +33,14 @@ class color_blocks_state:  # represents the possible state of the tower
 
         self.state = []  # [(top_cube), (second_cube), ..., (bottom_cube)], (top_cube)=(X,Y)
 
-        color_list = clean_String_helper(blocks_str)
+        if isinstance(blocks_str, list):
+            self.state = list(blocks_str)
 
-        for i in range(0, len(color_list), 2):
-            self.state.append((int(color_list[i]), int(color_list[i + 1])))  # covert to int as well
+        else:
+            color_list = clean_String_helper(blocks_str)
+
+            for i in range(0, len(color_list), 2):
+                self.state.append((int(color_list[i]), int(color_list[i + 1])))  # covert to int as well
 
         self.state_str = str(self.state)
 
@@ -69,14 +73,13 @@ class color_blocks_state:  # represents the possible state of the tower
             new_neighbor = self.state[:i] + [new_block] + self.state[i + 1:]
 
             neighbors_list.append(
-                (color_blocks_state(convert_list_to_str(new_neighbor)),
-                 1))  # add the neighbor to the neighbors' list, spin always cost 1
+                (color_blocks_state(new_neighbor),1))  # add the neighbor to the neighbors' list, spin always cost 1
 
         # new neighbors cause by flip:
         for i in range(len(self.state) - 1):
             new_neighbor = self.state[:i] + self.state[i:][::-1]  # flip it
             neighbors_list.append(
-                (color_blocks_state(convert_list_to_str(new_neighbor)), 1))  # flip also cost 1 dua to the forom
+                (color_blocks_state(new_neighbor), 1))  # flip also cost 1 dua to the forom
 
         return neighbors_list
 

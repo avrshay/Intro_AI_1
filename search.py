@@ -55,7 +55,7 @@ def duplicate_in_open(vn, open_set):
     if vn.state not in update_set:  # For sure, it isn't in open_set
         return False
 
-    if vn.g >= update_set.get(
+    if vn.state in update_set and vn.g >= update_set.get(
             vn.state):  # if I already found better way to arrive this state, it will be a duplicate for sure
         return True
 
@@ -67,7 +67,7 @@ def duplicate_in_open(vn, open_set):
 def duplicate_in_closed(vn, closed_set):
     if vn.state not in closed_set:
         return False
-    if vn.g >= update_set.get(
+    if vn.g >= closed_set.get(
             vn.state):  # if I already found better way to arrive this state,  there is a duplicate for sure
         return True
 
